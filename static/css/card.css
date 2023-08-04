@@ -3,7 +3,6 @@
 body {
     background-color: antiquewhite;
     font-family: Arial, Helvetica, sans-serif;
-
   }
   
   h1 {
@@ -74,6 +73,8 @@ body {
   }
 
   .card-content-front{
+    min-height: 250px;
+    max-height: 250px;
     display: grid;
     grid-template-columns: 150px repeat(2, 1fr);
     grid-template-rows: 50px repeat(3, 1fr);
@@ -90,11 +91,11 @@ body {
   }
   .profile-pic { 
     grid-area: pic;
-    align-self: start;
+    align-self: center;
     justify-self: center;
-    width: 100px; 
+    /* width: 100px; 
     height: 150px; 
-    background-color: black;
+    background-color: black; */
   }
 
   .fc-txt1{grid-area: text1; align-self: center;}

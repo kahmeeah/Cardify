@@ -1,0 +1,12 @@
+/* this file contains global styles that applies
+to the whole app, including fonts and variables */
+
+@font-face {
+    font-family: 'Barcode-Regular';
+    src: url(static/fonts/LibreBarcode39-Regular.ttf) format(truetype);
+}
+
+@font-face {
+    font-family: 'Barcode-Text';
+    src: url(static/fonts/LibreBarcode39Text-Regular.ttf) format(truetype);
+} 
