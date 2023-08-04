@@ -1,0 +1,251 @@
+@import './variables.css';
+
+body {
+    background-color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+  h1 {
+    color: navy;
+    margin-right: 20px;
+  }
+
+  h2{
+    color: hotpink;
+    font-weight: 800;
+    font-size: 20px;
+  }
+
+  p{
+    color: black;
+    margin: 0;
+    padding: 0;
+  }
+
+ 
+
+
+
+  .div-div {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .card-background-front, .card-background-back {
+    height: 250px;
+    width: 400px;
+    border-radius: 10px;
+    margin: auto;
+  }
+  .card-background-front{
+    background-color: lightblue;
+    border: 0px;
+    top: 100px;
+    left: 0px;
+    position: absolute;
+    transform: rotate(-10deg);
+  }
+  .card-background-back{
+    display: none; /* remove to reshow back card */
+    background-color: lightpink;
+    border: 0px;
+    top: 210px;
+    left: 110px;
+    position: absolute;
+  }
+
+
+
+
+  /* FRONT card classes */
+
+  .card-front-shape1{
+    width: inherit;
+    height: 50px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    
+    background-color: chartreuse;
+    position: absolute;
+  }
+
+  .card-content-front{
+    display: grid;
+    grid-template-columns: 150px repeat(2, 1fr);
+    grid-template-rows: 50px repeat(3, 1fr);
+    grid-template-areas: 
+    "title title title"
+    "pic text1 text2"
+    "pic text3 text4"
+    "pic text5 text6";
+  }
+
+  .card-title {
+    grid-area: title;
+    place-self: center;
+  }
+  .profile-pic { 
+    grid-area: pic;
+    align-self: start;
+    justify-self: center;
+    width: 100px; 
+    height: 150px; 
+    background-color: black;
+  }
+
+  .fc-txt1{grid-area: text1; align-self: center;}
+  .fc-txt2{grid-area: text2; align-self: center;}
+  .fc-txt3{grid-area: text3; align-self: center;} 
+  .fc-txt4{grid-area: text4; align-self: center;}
+  .fc-txt5{grid-area: text5; align-self: center;}
+  .fc-txt6{grid-area: text6; align-self: center;}
+  
+  .fc-subheading, .fc-para{
+    min-width: 0;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    display: block;
+  }
+
+  .fc-subheading{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: 900;
+    
+  }
+
+  .fc-para{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 100;
+  }
+
+
+
+
+  /* BACK card classes */
+
+  .card-content-back{
+    height: 250px;
+    padding-left: 27px;
+    padding-right: 27px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-rows: .5fr 1fr 1fr;
+    grid-template-areas:
+    "title title pic"
+    "text text pic"
+    "text text subtext";
+  }
+
+    .back-card-title{
+      grid-area: title;
+    }
+    .back-card-stats{
+      grid-area: text;
+    }
+    .back-card-track-img{
+      grid-area: pic;
+    }
+    .back-card-track-text{
+      grid-area: subtext;
+    }
+
+
+  /* shape classes */
+    .corner-shape-topLeft{
+      top: 10px;
+      left: 10px;
+      position: absolute;
+
+    }
+    .corner-shape-topRight{
+      top: 10px;
+      right: 10px;
+      position: absolute;
+      margin-left: auto;
+      margin-right: 0;
+
+    }
+    .corner-shape-bottomLeft{
+      bottom: 10px;
+      left: 10px;
+      position: absolute;
+      margin-top: auto;
+      margin-bottom: 0;
+
+    }
+    .corner-shape-bottomRight{
+      bottom: 10px;
+      right: 10px;
+      position: absolute;
+      margin-top: auto;
+      margin-bottom: 0;
+      margin-left: auto;
+      margin-right: 0;
+
+    }
+
+  .square {
+    width: 10px; 
+    height: 10px; 
+    background-color: var(--shape-colors, red);
+  }
+  .circle {
+    width: 10px; 
+    height: 10px; 
+    border-radius: 100%;
+    background-color: var(--shape-colors, red);
+  }
+  
+  .heart{
+    width: 15px;
+    height: 14px;
+  }
+  .heart:before, .heart:after{
+    position: absolute;
+    content: " ";
+    left: 7px;
+    top: 0;
+    width: 7px;
+    height: 14px;
+    background: var(--shape-colors, red);
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  .heart:after{
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+
+  .star{
+    width: 10px;
+    height: 10px;
+  }
+  .star:before{
+    content: " ";
+    position: absolute;
+    background: var(--shape-colors, red);
+    width: 8px;
+    height: 10px;
+    transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
+  }
+  .star:after{
+    content: " ";
+    position: absolute;
+    background: var(--shape-colors, red);
+    width: 8px;
+    height: 10px;
+    transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
+  }
