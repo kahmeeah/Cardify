@@ -1,12 +1,48 @@
 /* this file contains global styles that applies
 to the whole app, including fonts and variables */
 
+body {
+    background-color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* Media query for screens with a maximum width of 768px (typical mobile devices) */
+@media (max-width: 768px) {
+    /* Styles for mobile devices */
+    body {
+      zoom: 0.7; /* Adjust font size for smaller screens */
+    }
+  }
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap');
+
+/* ***************** FONTS ***************** */
+
+
+
 @font-face {
     font-family: 'Barcode-Regular';
-    src: url(static/fonts/LibreBarcode39-Regular.ttf) format(truetype);
+    src: url('../fonts/LibreBarcode39-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Barcode-Text';
-    src: url(static/fonts/LibreBarcode39Text-Regular.ttf) format(truetype);
-} 
+    src: url('../fonts/LibreBarcode39Text-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ***************** COLOR VARIABLES ***************** */
+:root {
+    --shape-colors: #2D444D; 
+
+        }
+    
+    /* #112A46; 
+    #2D444D
+    */

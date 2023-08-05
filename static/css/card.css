@@ -1,18 +1,15 @@
-@import './variables.css';
+@import './global.css';
 
-body {
-    background-color: antiquewhite;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+
   
   h1 {
-    color: navy;
+    color: #112A46;
     margin-right: 20px;
   }
 
   h2{
-    color: hotpink;
-    font-weight: 800;
+    color: antiquewhite;
+    /* font-weight: 800; */
     font-size: 20px;
   }
 
@@ -22,16 +19,20 @@ body {
     padding: 0;
   }
 
- 
-
 
 
   .div-div {
-    width: 500px;
+    width: 530px;
+    height: 460px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    position: relative;
+    position: absolute;
+    /* z-index: 15; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
   }
 
   .card-background-front, .card-background-back {
@@ -39,22 +40,33 @@ body {
     width: 400px;
     border-radius: 10px;
     margin: auto;
+    
+    /* border-color: #112A46;
+    border-style: dashed; */
   }
   .card-background-front{
+    display: block;
     background-color: lightblue;
-    border: 0px;
-    top: 100px;
-    left: 0px;
-    position: absolute;
+    border: 0;
+    /* top: 100px; */
+    left: -20px;
+    position: relative;
     transform: rotate(-10deg);
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
   }
   .card-background-back{
-    display: none; /* remove to reshow back card */
-    background-color: lightpink;
+    /* z-index: -1; */
+    display: block; /* remove to reshow back card */
+    background-color: lightblue;
     border: 0px;
     top: 210px;
     left: 110px;
     position: absolute;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
   }
 
 
@@ -68,7 +80,7 @@ body {
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
     
-    background-color: chartreuse;
+    background-color: #537D8D;
     position: absolute;
   }
 
@@ -79,20 +91,32 @@ body {
     grid-template-columns: 150px repeat(2, 1fr);
     grid-template-rows: 50px repeat(3, 1fr);
     grid-template-areas: 
-    "title title title"
+    "title title subtitle"
     "pic text1 text2"
     "pic text3 text4"
     "pic text5 text6";
   }
 
   .card-title {
+    padding-left: 45px;
     grid-area: title;
-    place-self: center;
+    align-self: center;
+    justify-self: start;
   }
+
+  .card-subtitle{
+    grid-area: subtitle;
+    align-self: center;
+    justify-self: end;
+    padding-right: 45px;
+  }
+
   .profile-pic { 
     grid-area: pic;
     align-self: center;
     justify-self: center;
+    
+    padding-bottom: 20px;
     /* width: 100px; 
     height: 150px; 
     background-color: black; */
@@ -111,6 +135,7 @@ body {
     padding: 0;
     margin: 0;
     display: block;
+    color: #112A46;
   }
 
   .fc-subheading{
@@ -119,7 +144,6 @@ body {
     text-transform: uppercase;
     line-height: 1;
     font-weight: 900;
-    
   }
 
   .fc-para{
@@ -135,14 +159,37 @@ body {
 
   /* BACK card classes */
 
+  .card-back-shape1{
+    
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    width: inherit;
+    height: 70px;
+    top: 0px;
+    background-color: #2D444D;
+    position: relative;
+  }
+
+  .card-back-shape2{
+    width: inherit;
+    height: 40px;
+    top: -50px;
+    background-color: #537D8D;
+    position: relative;
+  }
+
   .card-content-back{
+    z-index: 50;
     height: 250px;
-    padding-left: 27px;
-    padding-right: 27px;
+    position: absolute;
+    top: 0;
+    /* padding-left: 28px;
+    padding-right: 28px; */
     display: grid;
     grid-template-columns: 1fr 1fr 1.5fr;
-    grid-template-rows: .5fr 1fr 1fr;
+    grid-template-rows: 1fr .5fr 1fr 1fr;
     grid-template-areas:
+    "block block block"
     "title title pic"
     "text text pic"
     "text text subtext";
@@ -171,14 +218,14 @@ body {
     }
     .corner-shape-topRight{
       top: 10px;
-      right: 10px;
+      right: 19px;
       position: absolute;
       margin-left: auto;
       margin-right: 0;
 
     }
     .corner-shape-bottomLeft{
-      bottom: 10px;
+      bottom: 12px;
       left: 10px;
       position: absolute;
       margin-top: auto;
@@ -186,8 +233,8 @@ body {
 
     }
     .corner-shape-bottomRight{
-      bottom: 10px;
-      right: 10px;
+      bottom: 12px;
+      right: 19px;
       position: absolute;
       margin-top: auto;
       margin-bottom: 0;
