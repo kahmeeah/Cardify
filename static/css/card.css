@@ -10,11 +10,14 @@
   h2{
     color: antiquewhite;
     /* font-weight: 800; */
-    font-size: 20px;
+    font-family: 'Arial';
+    letter-spacing: -1px;
+    
+    /* font-size: 20px; */
   }
 
   p{
-    color: black;
+    color: #112A46;
     margin: 0;
     padding: 0;
   }
@@ -46,7 +49,7 @@
   }
   .card-background-front{
     display: block;
-    background-color: lightblue;
+    background-color: #CEDCD9;
     border: 0;
     /* top: 100px; */
     left: -20px;
@@ -59,9 +62,9 @@
   .card-background-back{
     /* z-index: -1; */
     display: block; /* remove to reshow back card */
-    background-color: lightblue;
+    background-color: #CEDCD9;
     border: 0px;
-    top: 210px;
+    top: 110px;
     left: 110px;
     position: absolute;
     border-color: black;
@@ -139,19 +142,22 @@
   }
 
   .fc-subheading{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    text-transform: uppercase;
+    font-family: 'Bebas Neue', Arial, sans-serif;
+    font-size: 20px;
+    text-transform: capitalize;
+    letter-spacing: 0px;
     line-height: 1;
     font-weight: 900;
+    place-self: center;
   }
 
   .fc-para{
     font-family: Arial, Helvetica, sans-serif;
     text-transform: capitalize;
-    font-size: 10px;
+    font-size: 14px;
     line-height: 1;
     font-weight: 100;
+    letter-spacing: -1px;
   }
 
 
@@ -166,7 +172,7 @@
     width: inherit;
     height: 70px;
     top: 0px;
-    background-color: #2D444D;
+    background-color: #1F374A;
     position: relative;
   }
 
@@ -174,38 +180,74 @@
     width: inherit;
     height: 40px;
     top: -50px;
-    background-color: #537D8D;
+    background-color: black;
     position: relative;
   }
 
   .card-content-back{
     z-index: 50;
-    height: 250px;
+    width: inherit;
+    height: inherit;
     position: absolute;
     top: 0;
     /* padding-left: 28px;
     padding-right: 28px; */
     display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr;
-    grid-template-rows: 1fr .5fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 70px .5fr 1fr 1fr;
     grid-template-areas:
-    "block block block"
+    ". . ."
     "title title pic"
-    "text text pic"
-    "text text subtext";
+    "text1 text2 pic"
+    "text3 text3 subtext";
   }
 
     .back-card-title{
       grid-area: title;
     }
-    .back-card-stats{
-      grid-area: text;
-    }
+
     .back-card-track-img{
       grid-area: pic;
     }
     .back-card-track-text{
       grid-area: subtext;
+      line-height: .5;
+    }
+
+    .bc-txt1{grid-area: text1; align-self: center;}
+    .bc-txt2{grid-area: text2; align-self: center;}
+    .bc-txt3{grid-area: text3; align-self: center;}
+    .bc-txt4{grid-area: text4; align-self: center;}
+
+
+    .bc-subheading, .bc-para{
+      min-width: 0;
+      text-align: left;
+      padding: 0;
+      padding-left: 18px;
+      margin: 0;
+      display: block;
+      color: #112A46;
+      place-self: center;
+    }
+  
+    .bc-subheading{
+      font-family: 'Bebas Neue', Arial, sans-serif;
+      font-size: 20px;
+      text-transform: capitalize;
+      letter-spacing: 0px;
+      line-height: 1.5;
+      font-weight: 900;
+      place-self: center;
+    }
+  
+    .bc-para{
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: capitalize;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 100;
+      letter-spacing: -1px;
     }
 
 
@@ -225,7 +267,7 @@
 
     }
     .corner-shape-bottomLeft{
-      bottom: 12px;
+      bottom: 10px;
       left: 10px;
       position: absolute;
       margin-top: auto;
@@ -233,7 +275,7 @@
 
     }
     .corner-shape-bottomRight{
-      bottom: 12px;
+      bottom: 10px;
       right: 19px;
       position: absolute;
       margin-top: auto;
@@ -293,6 +335,27 @@
     content: " ";
     position: absolute;
     background: var(--shape-colors, red);
+    width: 8px;
+    height: 10px;
+    transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
+  }
+
+  .light-star{
+    width: 10px;
+    height: 10px;
+  }
+  .light-star:before{
+    content: " ";
+    position: absolute;
+    background: antiquewhite;
+    width: 8px;
+    height: 10px;
+    transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
+  }
+  .light-star:after{
+    content: " ";
+    position: absolute;
+    background: antiquewhite;
     width: 8px;
     height: 10px;
     transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
