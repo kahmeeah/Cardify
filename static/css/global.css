@@ -1,27 +1,312 @@
 /* this file contains global styles that applies
 to the whole app, including fonts and variables */
 
+
+/* === Import Fonts === */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Barcode+39&display=swap');
+/* === Import Files === */
+@import url('./card.css');
 
-body {
-    background-color: antiquewhite;
+/* === Main Container Styles === */
+.main-container{
+    justify-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-areas: 
+    "nav"
+    "main"
+    "footer";
+}
+
+/* === Header Styles === */
+header{
+    height: 100%;
+    padding-left: 10px;
+    grid-area: header; 
+    display: block;
+    align-self: center;
+    text-align: left;
+    font-size: 70px;
     font-family: Arial, Helvetica, sans-serif;
+    color: #1F374A;
+    letter-spacing: -1px;
+    font-weight: 900;
+}
+
+/* === Navigation Styles === */
+nav{ 
+    grid-area: nav;
+    display: block;
+    align-self: center;
+    justify-self: right;
+    text-align: right;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1F374A;
+    letter-spacing: -1px;
+    font-weight: 900;
+}
+
+/* === Card Container Styles === */
+.card-container{ 
+    grid-area: main;
+}
+
+#global .card-container {
+    width: 530px;
+    height: 460px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
-  /* Media query for screens with a maximum width of 768px (typical mobile devices) */
-@media (max-width: 768px) {
-    /* Styles for mobile devices */
+  /* === Card Background Styles === */
+  #global .card-background-front {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    margin: auto;
+  }
+  #global .card-background-front{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    display: block;
+    background-color: #CEDCD9;
+    border: 0;
+    place-self: center;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+  }
+/* === Front of Card Content === */
+#global .card-front-shape1{
+    width: inherit;
+    height: 50px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    
+    background-color: #537D8D;
+    position: absolute;
+  }
+
+ /* === Front of Card Content === */
+ #global .card-front-shape1{
+    width: inherit;
+    height: 50px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    background-color: #537D8D;
+    position: absolute;
+  }
+
+  #global .card-content-front{
+    z-index: 2;
+    min-height: 100%;
+    max-height: 100%;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: 
+    "title subtitle"
+    "paragraph paragraph";
+  }
+  #global .card-title {
+    z-index: inherit;
+    padding-left: 45px;
+    grid-area: title;
+    align-self: center;
+    justify-self: start;
+  }
+  #global .card-subtitle{
+    z-index: inherit;
+    grid-area: subtitle;
+    align-self: center;
+    justify-self: end;
+    padding-right: 45px;
+  }
+
+  #global .card-paragraph{
+    grid-area: paragraph;
+    text-align: center;
+    place-self: center;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+/* === Footer Styles === */
+footer{
+    grid-area: footer;
+    text-align: center;
+}
+
+/* === List Styles === */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    display: inline;
+}
+
+/* === Link Styles === */
+#nav a{
+    color: inherit;
+    text-decoration: none;
+    padding: 5px;
+} 
+#nav a:hover{
+    text-decoration: underline dotted 3px;
+}
+#footer a{
+    color: inherit;
+    text-decoration: underline solid 1px;
+    padding: 5px;
+}
+
+#inline a {
+    color: inherit;
+    text-decoration: underline solid 1px;
+}
+
+/* === Button Styles === */
+/* Button Style */
+#loginBtn {
+    background-color: #537D8D;
+    color: #FAEBD7;
+    border: 2px solid #1F374A;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* On hover, change background and border color */
+  #loginBtn:hover {
+    background-color: #1F374A;
+    border-color: #537D8D;
+  }
+  
+  /* On active, change background color */
+  #loginBtn:active {
+    background-color: #112A46;
+  }
+  
+  /* Focus style - add an outline when the button is focused (for accessibility) */
+  #loginBtn:focus {
+    outline: 2px solid #84B68C;
+  }
+  
+/* #loginBtn {
+    font-family: Arial;
+    font-weight: 600;
+    letter-spacing: -1px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #84B68C;
+    border: none;
+    color: antiquewhite;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px;
+    width: 300px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  #loginBtn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  #loginBtn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  #loginBtn:hover span {
+    padding-right: 25px;
+  }
+  
+  #loginBtn:hover span:after {
+    opacity: 1;
+    right: 0;
+  } */
+
+/* === Global Styles === */
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color:  antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p{
+    color: #112A46;
+    margin-bottom: 10px;
+    padding: 0;
+    text-align: center;
+    font-size: 16px;
+  }
+
+h1 {
+    color: #112A46;
+    letter-spacing: -1px;
+    /* margin-right: 20px; */
+    font-size: 40px;
+}
+
+h2{
+    color: antiquewhite;
+    font-family: 'Arial';
+    letter-spacing: -1px;
+    font-size: 20px;
+}
+h3{
+    color: #537D8D;
+    
+    font-family: 'Arial';
+    letter-spacing: -1px;
+    font-size: 20px;
+}
+
+
+/* === Media Query === */
+@media (max-width: 768px) { /* for mobile devices */
     body {
-      zoom: 0.7; /* Adjust font size for smaller screens */
+      zoom: 0.7;
     }
-  }
+    nav{ 
+        align-self: center;
+        justify-self: center;
+    }
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap');
-
-/* ***************** FONTS ***************** */
-
-
-
+/* === Fonts === */
 @font-face {
     font-family: 'Barcode-Regular';
     src: url('../fonts/LibreBarcode39-Regular.ttf') format('truetype');
@@ -29,7 +314,6 @@ body {
     font-style: normal;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Barcode-Text';
     src: url('../fonts/LibreBarcode39Text-Regular.ttf') format('truetype');
@@ -38,13 +322,101 @@ body {
     font-display: swap;
 }
 
+/* === Variables === */
 
-/* ***************** COLOR VARIABLES ***************** */
 :root {
     --shape-colors: #1F374A; 
+}
 
-        }
-    
-    /* #112A46; 
-    #2D444D
-    */
+/* === Shape Styles === */
+  /* TO-DO: use ID for positions (left, etc) and for colors */
+  .corner-shape-topLeft{
+    top: 10px;
+    left: 10px;
+    position: absolute;
+  }
+  .corner-shape-topRight{
+    top: 10px;
+    right: 19px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .corner-shape-bottomLeft{
+    bottom: 10px;
+    left: 10px;
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+  .corner-shape-bottomRight{
+    bottom: 10px;
+    right: 19px;
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: 0;
+  }
+.heart{
+  width: 15px;
+  height: 14px;
+}
+.heart:before, .heart:after{
+  position: absolute;
+  content: " ";
+  left: 7px;
+  top: 0;
+  width: 7px;
+  height: 14px;
+  background: var(--shape-colors, red);
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+.heart:after{
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+.star{
+  width: 10px;
+  height: 10px;
+}
+.star:before{
+  content: " ";
+  position: absolute;
+  background: var(--shape-colors, red);
+  width: 8px;
+  height: 10px;
+  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
+}
+.star:after{
+  content: " ";
+  position: absolute;
+  background: var(--shape-colors, red);
+  width: 8px;
+  height: 10px;
+  transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
+}
+
+.light-star{
+  width: 10px;
+  height: 10px;
+}
+.light-star:before{
+  content: " ";
+  position: absolute;
+  background: antiquewhite;
+  width: 8px;
+  height: 10px;
+  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
+}
+.light-star:after{
+  content: " ";
+  position: absolute;
+  background: antiquewhite;
+  width: 8px;
+  height: 10px;
+  transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
+}

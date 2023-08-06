@@ -1,53 +1,42 @@
+/*
+ * This CSS file contains styles for the card component, which includes both the front and back sides of the card.
+ * The card is designed to display information about a user's listening history fetched from the Spotify API.
+ * It includes header, front card content, and back card content.
+ *
+ * Sections:
+ * 1. Import Global Styles: Imports global CSS styles from 'global.css'.
+ * 2. Header Styles: Styles for h1 and h2 elements used in the header section.
+ * 3. Card Container Styles: Styles for the main card container.
+ * 4. Card Background Styles: Styles for the background of both front and back sides of the card.
+ * 5. Front Card Content Styles: Styles for the front side of the card.
+ * 6. Back Card Content Styles: Styles for the back side of the card.
+ */
+
+
+/* === Import Files === */
 @import './global.css';
 
-
-  
-  h1 {
-    color: #112A46;
-    margin-right: 20px;
-  }
-
-  h2{
-    color: antiquewhite;
-    /* font-weight: 800; */
-    font-family: 'Arial';
-    letter-spacing: -1px;
-    
-    /* font-size: 20px; */
-  }
-
-  p{
-    color: #112A46;
-    margin: 0;
-    padding: 0;
-  }
-
-
-
-  .div-div {
+/* === Card Container Styles === */
+  .card-container {
     width: 530px;
     height: 460px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     position: absolute;
-    /* z-index: 15; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
   }
 
-  .card-background-front, .card-background-back {
+  /* === Card Background Styles === */
+  #user .card-background-front, .card-background-back {
     height: 250px;
     width: 400px;
     border-radius: 10px;
     margin: auto;
-    
-    /* border-color: #112A46;
-    border-style: dashed; */
   }
-  .card-background-front{
+  #user .card-background-front{
     display: block;
     background-color: #CEDCD9;
     border: 0;
@@ -59,7 +48,7 @@
     border-style: solid;
     border-width: 1px;
   }
-  .card-background-back{
+  #user .card-background-back{
     /* z-index: -1; */
     display: block; /* remove to reshow back card */
     background-color: #CEDCD9;
@@ -72,11 +61,7 @@
     border-width: 1px;
   }
 
-
-
-
-  /* FRONT card classes */
-
+/* === Front of Card Content === */
   .card-front-shape1{
     width: inherit;
     height: 50px;
@@ -99,39 +84,32 @@
     "pic text3 text4"
     "pic text5 text6";
   }
-
   .card-title {
     padding-left: 45px;
     grid-area: title;
     align-self: center;
     justify-self: start;
   }
-
   .card-subtitle{
     grid-area: subtitle;
     align-self: center;
     justify-self: end;
     padding-right: 45px;
   }
-
   .profile-pic { 
     grid-area: pic;
     align-self: center;
     justify-self: center;
-    
     padding-bottom: 20px;
-    /* width: 100px; 
-    height: 150px; 
-    background-color: black; */
   }
-
   .fc-txt1{grid-area: text1; align-self: center;}
   .fc-txt2{grid-area: text2; align-self: center;}
   .fc-txt3{grid-area: text3; align-self: center;} 
   .fc-txt4{grid-area: text4; align-self: center;}
   .fc-txt5{grid-area: text5; align-self: center;}
   .fc-txt6{grid-area: text6; align-self: center;}
-  
+
+/* === Front of Card Text Styles === */
   .fc-subheading, .fc-para{
     min-width: 0;
     text-align: left;
@@ -140,7 +118,6 @@
     display: block;
     color: #112A46;
   }
-
   .fc-subheading{
     font-family: 'Bebas Neue', Arial, sans-serif;
     font-size: 20px;
@@ -150,7 +127,6 @@
     font-weight: 900;
     place-self: center;
   }
-
   .fc-para{
     font-family: Arial, Helvetica, sans-serif;
     text-transform: capitalize;
@@ -160,13 +136,8 @@
     letter-spacing: -1px;
   }
 
-
-
-
-  /* BACK card classes */
-
+/* === Back of Card Content === */
   .card-back-shape1{
-    
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
     width: inherit;
@@ -175,7 +146,6 @@
     background-color: #1F374A;
     position: relative;
   }
-
   .card-back-shape2{
     width: inherit;
     height: 40px;
@@ -183,15 +153,12 @@
     background-color: black;
     position: relative;
   }
-
   .card-content-back{
     z-index: 50;
     width: inherit;
     height: inherit;
     position: absolute;
     top: 0;
-    /* padding-left: 28px;
-    padding-right: 28px; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 70px .5fr 1fr 1fr;
@@ -201,25 +168,22 @@
     "text1 text2 pic"
     "text3 text3 subtext";
   }
+  .back-card-title{
+    grid-area: title;
+  }
+  .back-card-track-img{
+    grid-area: pic;
+  }
+  .back-card-track-text{
+    grid-area: subtext;
+    line-height: .5;
+  }
+  .bc-txt1{grid-area: text1; align-self: center;}
+  .bc-txt2{grid-area: text2; align-self: center;}
+  .bc-txt3{grid-area: text3; align-self: center;}
+  .bc-txt4{grid-area: text4; align-self: center;}
 
-    .back-card-title{
-      grid-area: title;
-    }
-
-    .back-card-track-img{
-      grid-area: pic;
-    }
-    .back-card-track-text{
-      grid-area: subtext;
-      line-height: .5;
-    }
-
-    .bc-txt1{grid-area: text1; align-self: center;}
-    .bc-txt2{grid-area: text2; align-self: center;}
-    .bc-txt3{grid-area: text3; align-self: center;}
-    .bc-txt4{grid-area: text4; align-self: center;}
-
-
+/* === Back of Card Text Styles === */
     .bc-subheading, .bc-para{
       min-width: 0;
       text-align: left;
@@ -230,7 +194,6 @@
       color: #112A46;
       place-self: center;
     }
-  
     .bc-subheading{
       font-family: 'Bebas Neue', Arial, sans-serif;
       font-size: 20px;
@@ -240,7 +203,6 @@
       font-weight: 900;
       place-self: center;
     }
-  
     .bc-para{
       font-family: Arial, Helvetica, sans-serif;
       text-transform: capitalize;
@@ -249,114 +211,3 @@
       font-weight: 100;
       letter-spacing: -1px;
     }
-
-
-  /* shape classes */
-    .corner-shape-topLeft{
-      top: 10px;
-      left: 10px;
-      position: absolute;
-
-    }
-    .corner-shape-topRight{
-      top: 10px;
-      right: 19px;
-      position: absolute;
-      margin-left: auto;
-      margin-right: 0;
-
-    }
-    .corner-shape-bottomLeft{
-      bottom: 10px;
-      left: 10px;
-      position: absolute;
-      margin-top: auto;
-      margin-bottom: 0;
-
-    }
-    .corner-shape-bottomRight{
-      bottom: 10px;
-      right: 19px;
-      position: absolute;
-      margin-top: auto;
-      margin-bottom: 0;
-      margin-left: auto;
-      margin-right: 0;
-
-    }
-
-  .square {
-    width: 10px; 
-    height: 10px; 
-    background-color: var(--shape-colors, red);
-  }
-  .circle {
-    width: 10px; 
-    height: 10px; 
-    border-radius: 100%;
-    background-color: var(--shape-colors, red);
-  }
-  
-  .heart{
-    width: 15px;
-    height: 14px;
-  }
-  .heart:before, .heart:after{
-    position: absolute;
-    content: " ";
-    left: 7px;
-    top: 0;
-    width: 7px;
-    height: 14px;
-    background: var(--shape-colors, red);
-    border-radius: 50px 50px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-  }
-  .heart:after{
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-  }
-
-  .star{
-    width: 10px;
-    height: 10px;
-  }
-  .star:before{
-    content: " ";
-    position: absolute;
-    background: var(--shape-colors, red);
-    width: 8px;
-    height: 10px;
-    transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
-  }
-  .star:after{
-    content: " ";
-    position: absolute;
-    background: var(--shape-colors, red);
-    width: 8px;
-    height: 10px;
-    transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
-  }
-
-  .light-star{
-    width: 10px;
-    height: 10px;
-  }
-  .light-star:before{
-    content: " ";
-    position: absolute;
-    background: antiquewhite;
-    width: 8px;
-    height: 10px;
-    transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
-  }
-  .light-star:after{
-    content: " ";
-    position: absolute;
-    background: antiquewhite;
-    width: 8px;
-    height: 10px;
-    transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
-  }
