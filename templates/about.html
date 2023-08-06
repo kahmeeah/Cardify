@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/card.css">
     <link rel="stylesheet" href="../static/css/global.css">
-    <title>Cardify | Home</title>
+    <title>Cardify | About</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -16,7 +17,7 @@
                 <!-- <li><a href="about.asp">About</a></li> -->
             </ul>
         </nav>
-
+        
         <!-- this is the content container -->
         <div class="card-container" id="global">
             <div class="card-background-front" id="global"> 
@@ -30,23 +31,35 @@
                 <!-- start of front card content -->
                 <div class="card-content-front"> 
                     <div class="card-title" > 
-                        <h2 style="font-size: 30px;">Cardify</h2>
+                        <h2 style="font-size: 30px;"> Cardify</h2>
                     </div>
                     <div class="card-subtitle">
                         <h2 style="font-size: 15px; margin: 0; text-align: right;">003</h2>
                         <h2 style="font-size: 10px; margin: 0; text-align: right;">ID Card</h2>
                     </div>
-                    <div class="card-paragraph">
-                        <h1 style="margin-bottom: 10px;">Welcome</h1>
-                        <p style="font-size: 16px;">To get started, Login with Spotify and generate below.</p>
-                        <br><button id="loginBtn" onclick="loginWithSpotify()"><span>Login with Spotify</span></button>
+                    <div class="card-paragraph" style="align-self: start;" id="inline">
+                        <h1 style="margin-bottom: 10px;">About Cardify</h1>
+                        <p>Cardify is a tool that analyzes your Spotify listening habits to create a personalized
+                            infographic in the form of a fake ID Card.</p>
+                        <p style="margin-bottom: 0px;">Getting started is easy! Simply <a href="index.html">login with your Spotify account</a>, and our app will securely retrieve
+                            your listening history. Once the data is fetched, you'll get access to your personalized infographic
+                            that reflects your unique musical journey.</p>
+                            <br><h3 style="margin-bottom: 5px;">Questions?</h3>
+                            <p>Check out a list of frequently asked questions on the <a href="faq.html">FAQ</a> page for more information
+                                or <a href="contact.html">Contact us</a>.</p>
+                
+                            <h3 style="margin-bottom: 5px;">Privacy</h3>
+                            <p>Cardify takes your privacy seriously. Rest assured that it handles your data with utmost care and adheres to
+                                industry-standard security measures. For more information, please refer to our <a href="privacy.html">Privacy Policy</a>.</p>
+
+
+
                     </div>
 
                 </div>
             </div>
         </div>
         <!-- this is the end of the main container -->
-        
         <footer id="footer">
             <span>&copy; 2023 Kahmeeah Obey. All rights reserved. 
                 <br><a href="about.html">About</a> |
