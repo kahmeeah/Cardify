@@ -10,9 +10,9 @@
     <div class="main-container">
         <nav id="nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 <!-- <li><a href="about.asp">About</a></li> -->
             </ul>
         </nav>
@@ -52,13 +52,13 @@
                         <h2 style="font-size: 10px; margin: 0; text-align: right;">ID Card</h2>
                     </div>
                     <div class="profile-pic">
-                        <br><img src="../static/images/cat.jpg" alt="user profile picture" style="height: 120px; width: 120px;
+                        <br><img src="{{ profile_picture if profile_picture else url_for('static', filename='images/cat.jpg') }}" alt="user profile picture" style="height: 120px; width: 120px;
                         border-width: 5px; border-style: solid; border-color: antiquewhite; border-radius: 5px;">
                         <br><span style="font-family: 'Barcode-Regular', Arial, sans-serif; font-size: 28px; color: #112A46;">012345</span>
                     </div>
                     <div class="fc-txt1" style="align-self: end;">
                         <span class="fc-subheading">name</span>
-                        <span class="fc-para">kamimi</span>
+                        <span class="fc-para">{{ display_name }}</span>
                     </div>
                     <div class="fc-txt2" style="align-self: end;">
                         <span class="fc-subheading">num id</span>
@@ -66,19 +66,19 @@
                     </div>
                     <div class="fc-txt3">
                         <span class="fc-subheading">playlists</span>
-                        <span class="fc-para">839 saved</span>
+                        <span class="fc-para">{{ saved_playlists }} saved</span>
                     </div>
                     <div class="fc-txt4">
                         <span class="fc-subheading">issue</span>
-                        <span class="fc-para">05 Aug 2023</span>
+                        <span class="fc-para" id="currentDate"></span>
                     </div>
                     <div class="fc-txt5" style="align-self: start;">
                         <span class="fc-subheading">tracks</span>
-                        <span class="fc-para">4728 liked</span>
+                        <span class="fc-para">{{ saved_tracks }} liked</span>
                     </div>
                     <div class="fc-txt6" style="align-self: start;">
                         <span class="fc-subheading">expiry</span>
-                        <span class="fc-para">05 Aug 2024</span>
+                        <span class="fc-para" id="futureDate"></span>
                     </div>
 
                 </div>
@@ -102,41 +102,52 @@
 
                 <div class="card-content-back" style="z-index: 2;">
                     <div class="back-card-title" style="align-self: end; justify-self: right;"> 
-                        <h2 style="color: #537D8D; font-weight: 800; font-family: 'Bebas Neue', Arial, sans-serif; margin: 0; font-size: 30px; letter-spacing: 3px; position: relative; top: 5px; display: block;">lifetime</h2>
+                        <h2 style="color: #537D8D; font-weight: 800; font-family: 'Bebas Neue', Arial, sans-serif; margin: 0; font-size: 30px; letter-spacing: 3px; position: relative; top: 5px; display: block; 
+                        
+                        ">four weeks</h2>
                     </div>
 
             
 
                     <div class="bc-txt1" >
                         <span class="bc-subheading">top genres</span>
-                        <span class="bc-para">indie lo-fi, midwest emo, moody</span>
+                        <span class="bc-para">{{ top_genres }}</span>
                     </div>
                     <div class="bc-txt2">
                         <span class="bc-subheading">mood</span>
-                        <span class="bc-para">56% of your songs are sad</span>
+                        <span class="bc-para">Your songs are {{ top_moods }}</span>
                     </div>
                     <div class="bc-txt3" style="align-self: start;">
                         <span class="bc-subheading">fav artists</span>
-                        <span class="bc-para">flatsound, slow pulp, tomorrow x together, phoebe bridgers, beabadoobee</span>
+                        <span class="bc-para">{% for artist in top_artists %}
+                            {{ artist['name'] }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}</span>
                     </div>
                     <!-- <div class="bc-txt4" style="align-self: start;">
                         <span class="bc-subheading">albums</span>
                         <span class="bc-para"></span>
                     </div> -->
 
-                    <div class="back-card-track-img" style="place-self: center;">
-                        <img src="../static/images/flatsound-ex.jpg" alt="album artwork" 
-                    style="z-index: 2; max-width: 100px; position: relative; top: 10px;
-                    border-width: 5px; border-style: solid; border-color: #537D8D; border-radius: 5px;">
+                    <div class="back-card-track-img" style="justify-self: center; align-self: start;">
+                        <img src="{{ top_track['album_image'] }}" alt="album artwork" 
+                    style="z-index: 2; max-width: 85px; position: relative; top: 10px;
+                    border-width: 3px; border-style: solid; border-color: #537D8D; border-radius: 5px;">
                     </div>
 
                     <div class="back-card-track-text" 
-                    style="align-self: center; justify-self: center; z-index: 3; text-align: right;">
-                        <h3 style="line-height: 1.2; margin: 0; color: #112A46; letter-spacing: 0px; font-family: 'Bebas Neue', Arial, sans-serif; font-size: 20px;">Top Track</h3>
-                        <span style="font-size: 12px; line-height: 1; letter-spacing: -.5px;">Chamomile
-                        - <i>Flatsound</i>
-                        
+                    style="align-self: start; justify-self: center; z-index: 3; text-align: left;" >
+                        <h3 style="line-height: 1.2; margin: 0; padding-right: 0px; color: #112A46; letter-spacing: 0px; font-family: 'Bebas Neue', Arial, sans-serif; font-size: 20px; text-align: center; ">Top Track</h3>
+                        <span style="font-size: 12px; line-height: 1; letter-spacing: -.5px; 
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        text-align: left;">
+                        <!-- /* max-width: 100px; overflow: hidden; text-overflow: ellipsis; display: block; white-space: nowrap; max-height: 30px;"> */ -->
+                            {{ top_track['name'] }}
                         </span>
+                        <span style="font-size: 12px; line-height: 1; letter-spacing: -.5px; text-align: left;">by <i>{{ top_track['artists'][0] }}</i></span>
                     </div>
                 </div>
             </div>
@@ -146,13 +157,14 @@
         
         <footer id="footer">
             <span>&copy; 2023 Kahmeeah Obey. All rights reserved. 
-                <br><a href="about.html">About</a> |
+                <br><a href="{{ url_for('about') }}">About</a> |
                 <!-- <a href="about.html">About</a> |
                 <a href="mailto:yourname@example.com">Contact</a> | -->
                 <a href="https://github.com/yourusername">GitHub</a> |
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="{{ url_for('privacy') }}">Privacy Policy</a>
             </span>
         </footer>
     </div>
+    <script src="../static/js/script.js"></script>
 </body>
 </html>
