@@ -3,3 +3,7 @@ __pycache__/
 venv/
 self-notes.txt
 CREDITS.md
+.env
+.vscode/
+testpy.html
+.spotipyoauthcache
