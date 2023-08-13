@@ -10,9 +10,9 @@
     <div class="main-container">
         <nav id="nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 <!-- <li><a href="about.asp">About</a></li> -->
             </ul>
         </nav>
@@ -39,7 +39,10 @@
                     <div class="card-paragraph">
                         <h1 style="margin-bottom: 10px;">Welcome</h1>
                         <p style="font-size: 16px;">To get started, Login with Spotify and generate below.</p>
-                        <br><button id="loginBtn" onclick="loginWithSpotify()"><span>Login with Spotify</span></button>
+                        <br>
+                        <button id="loginBtn" data-isloggedin="{{ 'true' if 'token' in session else 'false' }}" 
+                        data-login-route="{{ url_for('login') }}" data-gen-route="{{ url_for('generate') }}">
+                        </button>
                     </div>
 
                 </div>
@@ -49,13 +52,14 @@
         
         <footer id="footer">
             <span>&copy; 2023 Kahmeeah Obey. All rights reserved. 
-                <br><a href="about.html">About</a> |
+                <br><a href="{{ url_for('about') }}">About</a> |
                 <!-- <a href="about.html">About</a> |
                 <a href="mailto:yourname@example.com">Contact</a> | -->
                 <a href="https://github.com/yourusername">GitHub</a> |
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="{{ url_for('privacy') }}">Privacy Policy</a>
             </span>
         </footer>
     </div>
+    <script src="../static/js/script.js"></script>
 </body>
 </html>
