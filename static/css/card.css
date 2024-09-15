@@ -252,3 +252,56 @@
       font-weight: 100;
       letter-spacing: -1px;
     }
+
+
+
+
+#svg-buttons:hover{
+  cursor: pointer;
+  fill: #537D8D;
+
+}
+
+/* svg:hover{
+  cursor: pointer;
+} */
+    .cog{
+      position: absolute;
+      left: 510px;
+      top: -30px;
+      z-index: 500;
+      fill: #112A46;
+      width: 50px;
+    }
+
+    /* .cog:hover{
+      fill: #537D8D;
+    } */
+
+    .shape{
+      position: absolute;
+      left: 275px;
+      top: 370px;
+      z-index: 500;
+      fill: #112A46;
+      width: 50px;
+    }
+
+    .color{
+      position: absolute;
+      left: 350px;
+  
+      top: 370px;
+      z-index: 500;
+      fill: #112A46;
+      width: 50px;
+    }
+
+    .date{
+      position: absolute;
+      left: 200px;
+      top: 370px;
+      z-index: 500;
+      fill: #112A46;
+      width: 50px;
+    }
