@@ -57,7 +57,7 @@ def logout():
     return redirect(url_for('index'))                   
 
 @app.route('/generate')
-def generate():
+def generate(): 
     if 'token' in session:
         access_token = s.loads(session['token'])['token']
         from spotify_functions import gather_data
@@ -72,17 +72,20 @@ def test():
     return render_template('testpy.html', **template_data)
     
 @app.route('/about')
-def about():
+def about(): 
     return render_template('about.html')
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
 @app.route('/faq')
 def faq():
     return render_template('faq.html')
+
 @app.route('/privacy-policy')
 def privacy():
-    return render_template('privacy.html')
+    return render_template('privacy.html') 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)  
