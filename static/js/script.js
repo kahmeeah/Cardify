@@ -14,7 +14,9 @@
 var loginBtn = document.getElementById('loginBtn');
 const loader = document.querySelector('.loader');
 const maincontainer = document.querySelector('.main-container');
+if (loader){
 loader.style.visibility='hidden';
+}
 if (loginBtn){
     var isLoggedIn = loginBtn.getAttribute('data-isloggedin');
     var loginRoute = loginBtn.getAttribute('data-login-route');
@@ -44,7 +46,7 @@ if (loginBtn){
     var today = new Date();
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var formattedDate = today.getDate().toString().padStart(2, '0') + ' ' + monthNames[today.getMonth()] + ' ' + today.getFullYear();
-    console.log(formattedDate);
+    // console.log(formattedDate);
     currentDate.textContent = formattedDate;
  }
 
@@ -53,10 +55,37 @@ if (loginBtn){
     var today = new Date();
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var formattedDate = today.getDate().toString().padStart(2, '0') + ' ' + monthNames[today.getMonth()] + ' 20XX';
-    console.log(formattedDate);
+    // console.log(formattedDate);
     futureDate.textContent = formattedDate;
  }
 
 
  // #endregion
 
+// #region cards onclick
+const frontcard = document.querySelector('.card-background-front');
+const backcard = document.querySelector('.card-background-back');
+
+
+if (frontcard&&backcard){
+frontcard.addEventListener('click', () => {
+    frontcard.classList.remove('front-animation'); // remove existing class first
+    void frontcard.offsetWidth; // trigger reflow (forces the browser to repaint)
+    frontcard.classList.add('front-animation');
+    frontcard.style.zIndex='200';
+    backcard.style.zIndex='0';
+})
+
+
+
+backcard.addEventListener('click', () => {
+    backcard.classList.remove('back-animation'); // remove existing class first
+    void backcard.offsetWidth; // trigger reflow (forces the browser to repaint)
+    backcard.classList.add('back-animation');
+    backcard.style.zIndex='200';
+    frontcard.style.zIndex='0';
+})
+}
+
+
+// #endregion
