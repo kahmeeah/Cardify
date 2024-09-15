@@ -44,14 +44,14 @@
                         <p>Absolutely! I encourage you to share your unique music infographic with your friends and followers.</p>
 
                         <h3 style="margin-bottom: 5px;">How do I revoke access?</h3>
-                        <p>Follow the instructions located on the <a href="privacy.html">Privacy Policy</a> page.</p>
+                        <p>Follow the instructions located on the <a href="{{ url_for('privacy') }}">Privacy Policy</a> page.</p>
 
                         <h3 style="margin-bottom: 5px;">How was Cardify made?</h3>
                         <p>Cardify's source code is available on GitHub. Please be sure to review the licenses before proceeding.
                         
 
                         <h3 style="margin-bottom: 5px;">I have another question!</h3>
-                        <p>If you have any other questions or need assistance, please don't hesitate to <a href="contact.html">contact me</a>. I'm here to help!</p>
+                        <p>If you have any other questions or need assistance, please don't hesitate to <a href="{{ url_for('contact') }}">contact me</a>. I'm here to help!</p>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <br><a href="{{ url_for('about') }}">About</a> |
                 <!-- <a href="about.html">About</a> |
                 <a href="mailto:yourname@example.com">Contact</a> | -->
-                <a href="https://github.com/yourusername">GitHub</a> |
+                <a href="https://github.com/kahmeeah">GitHub</a> |
                 <a href="{{ url_for('privacy') }}">Privacy Policy</a>
             </span>
         </footer>

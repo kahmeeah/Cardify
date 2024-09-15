@@ -41,16 +41,16 @@
                         <h1 style="margin-bottom: 10px;">About Cardify</h1>
                         <p>Cardify is a tool that analyzes your Spotify listening habits to create a personalized
                             infographic in the form of a fake ID Card.</p>
-                        <p style="margin-bottom: 0px;">Getting started is easy! Simply <a href="index.html">login with your Spotify account</a>, and our app will securely retrieve
+                        <p style="margin-bottom: 0px;">Getting started is easy! Simply <a href="{{ url_for('index') }}">login with your Spotify account</a>, and our app will securely retrieve
                             your listening history. Once the data is fetched, you'll get access to your personalized infographic
                             that reflects your unique musical journey.</p>
                             <br><h3 style="margin-bottom: 5px;">Questions?</h3>
-                            <p>Check out a list of frequently asked questions on the <a href="faq.html">FAQ</a> page for more information
-                                or <a href="contact.html">Contact us</a>.</p>
+                            <p>Check out a list of frequently asked questions on the <a href="{{ url_for('faq') }}">FAQ</a> page for more information
+                                or <a href="{{ url_for('contact') }}">Contact us</a>.</p>
                 
                             <h3 style="margin-bottom: 5px;">Privacy</h3>
                             <p>Cardify takes your privacy seriously. Rest assured that it handles your data with utmost care and adheres to
-                                industry-standard security measures. For more information, please refer to our <a href="privacy.html">Privacy Policy</a>.</p>
+                                industry-standard security measures. For more information, please refer to our <a href="{{ url_for('privacy') }}">Privacy Policy</a>.</p>
 
 
 
@@ -65,7 +65,7 @@
                 <br><a href="{{ url_for('about') }}">About</a> |
                 <!-- <a href="about.html">About</a> |
                 <a href="mailto:yourname@example.com">Contact</a> | -->
-                <a href="https://github.com/yourusername">GitHub</a> |
+                <a href="https://github.com/kahmeeah">GitHub</a> |
                 <a href="{{ url_for('privacy') }}">Privacy Policy</a>
             </span>
         </footer>
