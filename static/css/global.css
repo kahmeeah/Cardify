@@ -333,6 +333,37 @@ h3{
     --shape-colors: #1F374A; 
 }
 
+/* === Loader Styles === */
+.loader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader::after{
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 20px solid #CEDCD9;
+  border-top-color: #537D8D;
+  border-radius: 50%;
+  animation: loading 1000ms ease infinite;
+}
+
+@keyframes loading {
+  from{
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+  
+}
 /* === Shape Styles === */
   /* TO-DO: use ID for positions (left, etc) and for colors */
   .corner-shape-topLeft{

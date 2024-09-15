@@ -12,6 +12,9 @@
 
 // #region login button
 var loginBtn = document.getElementById('loginBtn');
+const loader = document.querySelector('.loader');
+const maincontainer = document.querySelector('.main-container');
+loader.style.visibility='hidden';
 if (loginBtn){
     var isLoggedIn = loginBtn.getAttribute('data-isloggedin');
     var loginRoute = loginBtn.getAttribute('data-login-route');
@@ -21,7 +24,10 @@ if (loginBtn){
     if (isLoggedIn === 'true') {
         loginBtn.innerText = 'Generate';
         loginBtn.addEventListener('click', function() {
+            maincontainer.style.visibility='hidden';
+            loader.style.visibility='visible';
             window.location.href = genRoute;
+
         });
     } else {
     
@@ -54,4 +60,3 @@ if (loginBtn){
 
  // #endregion
 
- 
