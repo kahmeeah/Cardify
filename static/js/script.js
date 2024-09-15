@@ -89,3 +89,26 @@ backcard.addEventListener('click', () => {
 
 
 // #endregion
+
+
+// #region setting/options buttons
+
+const cog = document.querySelector('.cog')
+const options = document.querySelector('#hidden-options')
+options.style.visibility='hidden'
+
+if (cog){
+
+    cog.addEventListener('click', () => {
+        if (options.style.visibility=='visible'){
+            options.style.visibility='hidden'
+
+        } else{
+       options.style.visibility='visible'
+
+        }
+
+    })
+}
+
+// #endregion
