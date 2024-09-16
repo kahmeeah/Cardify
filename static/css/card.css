@@ -256,10 +256,28 @@
 
 
 
-#svg-buttons:hover{
+.svg-buttons:hover{
   cursor: pointer;
   fill: #537D8D;
 
+}
+
+#hidden-options{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: space-around; */
+  left: 200px;
+  bottom: -20px;
+  position: absolute;
+}
+
+.option-item{
+  z-index: 500;
+  fill: #112A46;
+  width: 50px;
+  margin-right: 20px;
 }
 
 /* svg:hover{
@@ -279,29 +297,32 @@
     } */
 
     .shape{
-      position: absolute;
-      left: 275px;
-      top: 370px;
+      /* position: absolute; */
+      /* left: 275px; */
+      /* top: 370px; */
       z-index: 500;
-      fill: #112A46;
+      fill: #34cb16;
       width: 50px;
+      margin-right: 20px;
     }
 
     .color{
-      position: absolute;
-      left: 350px;
+      /* position: absolute;
+      left: 350px; */
   
-      top: 370px;
+      /* top: 370px; */
       z-index: 500;
       fill: #112A46;
       width: 50px;
+      margin-right: 20px;
     }
 
     .date{
-      position: absolute;
-      left: 200px;
-      top: 370px;
+      /* position: absolute; */
+      /* left: 200px; */
+      /* top: 370px; */
       z-index: 500;
       fill: #112A46;
       width: 50px;
+      margin-right: 20px;
     }
