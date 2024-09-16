@@ -95,20 +95,82 @@ backcard.addEventListener('click', () => {
 
 const cog = document.querySelector('.cog')
 const options = document.querySelector('#hidden-options')
+const originalOptions = options.innerHTML;
 options.style.visibility='hidden'
 
 if (cog){
 
     cog.addEventListener('click', () => {
-        if (options.style.visibility=='visible'){
+        console.log("cog clicked")
+        if (options.style.visibility==='visible'){
             options.style.visibility='hidden'
+            options.innerHTML = originalOptions;
 
         } else{
+
        options.style.visibility='visible'
 
+    // SHAPE OPTION BUTTON
+       const shape = document.querySelector('#shape');
+        if (shape){
+            shape.addEventListener('click', () =>{
+                console.log("shape clicked")
+                options.innerHTML = '';
+
+                // const heart = document.createElement
+
+                // Create the SVG element dynamically
+                const starSVG = createSVG('star', '../static/images/cardify-shapes.svg#star')
+                options.appendChild(starSVG);
+
+                const heartSVG = createSVG('heart', '../static/images/cardify-shapes.svg#heart')
+                options.appendChild(heartSVG);
+
+                const cloverSVG = createSVG('clover', '../static/images/cardify-shapes.svg#clover')
+                options.appendChild(cloverSVG);
+
+                const flowerSVG = createSVG('flower', '../static/images/cardify-shapes.svg#flower')
+                options.appendChild(flowerSVG);
+
+            })
         }
 
+        const color = document.querySelector('#color');
+        const date = document.querySelector('#date');
+       
+
+        }
     })
 }
+
+function createSVG(id, href) {
+    // Create the SVG element dynamically
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNamespace, "svg");
+    svg.setAttribute("class", "option-item svg-buttons");
+    svg.setAttribute("id", id);
+
+    // Create the <use> element
+    const use = document.createElementNS(svgNamespace, "use");
+    use.setAttribute("href", href);
+
+    // Append the <use> element to the SVG
+    svg.appendChild(use);
+
+    return svg;
+}
+
+
+
+// when shape is clicked
+// remove all elememts in hidden options
+// add several new option buttons
+// these option buttons will do different things
+
+
+// shapefunc(shape)
+// datefunc (date)
+// colorfunc (color)
+
 
 // #endregion
