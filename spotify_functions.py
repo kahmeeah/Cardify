@@ -32,6 +32,7 @@ range = 'long_term'
 
 
 def process_time(timeframe):
+    global range
     match timeframe:
         case 'short':
             range = 'short_term'
@@ -43,13 +44,9 @@ def process_time(timeframe):
             range = 'short_term'
 
 
-
-
-
-
-
 def get_user_top_tracks(limit): # to-do: fix variable names
     top_tracks = sp.current_user_top_tracks(limit=limit, time_range=range) 
+    print(range)
 
     # get list of track names and artists
     track_list = []
@@ -58,7 +55,8 @@ def get_user_top_tracks(limit): # to-do: fix variable names
             'id': current_track['id'],
             'name': current_track['name'],
             'artists': [current_artist['name'] for current_artist in current_track['artists']],
-            'album_image': current_track['album']['images'][0]['url']
+            'album_image': current_track['album']['images'][0]['url'],
+            'popularity': current_track['popularity']
         }
         track_list.append(track_info)
 
@@ -95,17 +93,6 @@ def get_saved_tracks():
     track_info = sp.current_user_saved_tracks(limit=10, offset=10000)
     saved_tracks = track_info['total']
     return saved_tracks
-
-# region MOOD FUNCTIONS
-def determine_mood(valence, energy):
-    if valence <= 0.5 and energy <= 0.5:
-        return 'Sad'
-    elif valence <= 0.5 and energy > 0.5:
-        return 'Angry'
-    elif valence > 0.5 and energy <= 0.5:
-        return 'Relaxed'
-    elif valence > 0.5 and energy > 0.5:
-        return 'Happy'
     
 def get_audio_features(track_ids):
     audio_features = sp.audio_features(track_ids)  # track_ids must be a list
@@ -119,24 +106,15 @@ def get_audio_features(track_ids):
             features_list.append(feature_dict)
     return features_list
 
-def get_top_tracks_mood():
+
+
+def get_obscurity_lvl():
     top_tracks = get_user_top_tracks(50)
-    track_ids = [track['id'] for track in top_tracks]
-    audio_features = get_audio_features(track_ids)
-    mood_counts = {'Sad': 0, 'Angry': 0, 'Relaxed': 0, 'Happy': 0}
+    popularity_lvl = [track['popularity'] for track in top_tracks]
+    avg_popularity = sum(popularity_lvl) / len(popularity_lvl)
 
-    for track_features in audio_features:
-        valence = track_features['valence']
-        energy = track_features['energy']
-        mood = determine_mood(valence, energy)
-        mood_counts[mood] += 1
-
-    total_tracks = len(audio_features)
-    mood_percentages = {mood: count / total_tracks * 100 for mood, count in mood_counts.items()}
-    sorted_moods = sorted(mood_percentages.items(), key=lambda x: x[1], reverse=True)
-    top_moods = [f"{percentage:.2f}% {mood}" for mood, percentage in sorted_moods[:1]] # change 4 to wtv number 1-4
-
-    return ", ".join(top_moods)
+    obscurity_lvl = round(100 - avg_popularity, 2)
+    return obscurity_lvl
 
 
 # endregion
@@ -165,7 +143,7 @@ def gather_data():
     top_artists = get_top_artists(5)
     saved_playlists = get_saved_playlists()
     saved_tracks = get_saved_tracks()
-    top_moods = get_top_tracks_mood()
+    obscurity_lvl = get_obscurity_lvl()
     top_genres = get_top_genres()
 
     return {
@@ -175,6 +153,6 @@ def gather_data():
         'top_artists': top_artists,
         'saved_playlists': saved_playlists,
         'saved_tracks': saved_tracks,
-        'top_moods': top_moods,
+        'obscurity_lvl': obscurity_lvl,
         'top_genres': top_genres
     }
