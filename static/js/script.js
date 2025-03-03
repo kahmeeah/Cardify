@@ -136,7 +136,36 @@ if (cog){
         }
 
         const color = document.querySelector('#color');
+
         const date = document.querySelector('#date');
+        if (date){
+            date.addEventListener('click', () => {
+                console.log("date clicked")
+                options.innerHTML = '';
+
+                const dateWeeks = createDateButton("Past 4 Weeks", "short")
+                options.appendChild(dateWeeks)
+
+                const dateYear = createDateButton("Past Year", "medium")
+                options.appendChild(dateYear)
+
+                const dateLifetime = createDateButton("Lifetime", "long")
+                options.appendChild(dateLifetime)
+            })
+        }
+        //lifetime
+        //past 4 wks
+        //past yr
+        //
+        // .bc-para{
+        //     font-family: Arial, Helvetica, sans-serif;
+        //     text-transform: capitalize;
+        //     font-size: 14px;
+        //     line-height: 1;
+        //     font-weight: 100;
+        //     letter-spacing: -1px;
+        //   }
+
        
 
         }
@@ -160,9 +189,33 @@ function createSVG(id, href) {
     return svg;
 }
 
+function createDateButton(datevar, timeframe){
+
+    const dateButton = document.createElement("button")
+    dateButton.textContent = datevar
+    dateButton.classList.add("dateBtn")
+
+    dateButton.addEventListener("click", () => {
+        sendDataToFlask(timeframe);
+    })
+    return dateButton
+}
+
+function sendDataToFlask(timeframe) {
+    fetch('/set_time', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ time: timeframe })
+    })
+    .then(response => response.json())
+    .catch(error => console.error("Error:", error));
+}
 
 
-// when shape is clicked
+
+// when cog/option shape is clicked
 // remove all elememts in hidden options
 // add several new option buttons
 // these option buttons will do different things
@@ -171,6 +224,22 @@ function createSVG(id, href) {
 // shapefunc(shape)
 // datefunc (date)
 // colorfunc (color)
+
+
+//for the shapefunc
+// when shape is clicked, a shape variable is set
+// variable will change js---js will remove the existing shapes on the page
+//      & replace them with new divs containing the new shape
+//or: use js to update the existing divs w new class - that class will contain the svg?
+
+//for the datefunc
+// when date variable is clicked
+// it will be sent to flask/backend so it can all the api accordingly, that new info is sent to frontend html
+// js will remove&replace the existing text div on page to say wtv unless this can be done using spotifys api
+
+//for the colorfunc
+//create css variables for the colors
+// update/set the variable dynamically from js
 
 
 // #endregion

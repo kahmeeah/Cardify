@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, session, url_for, render_template
+from flask import Flask, jsonify, redirect, request, session, url_for, render_template
 from requests_oauthlib import OAuth2Session
 from dotenv import load_dotenv
 import spotipy
@@ -6,6 +6,7 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 import os
 from itsdangerous import URLSafeSerializer
+import spotify_functions
 
 AUTHORIZATION_BASE_URL = "https://accounts.spotify.com/authorize"
 TOKEN_URL = "https://accounts.spotify.com/api/token"
@@ -47,6 +48,9 @@ def login():
 @app.route('/callback')
 def callback():
     token_info = sp_oauth.get_access_token(request.args['code'])
+
+
+    
     token = s.dumps({'token': token_info['access_token']})
     session['token'] = token
     return redirect(url_for('index'))
@@ -64,6 +68,16 @@ def generate():
         template_data = gather_data()
         return render_template('card.html', **template_data)
     return redirect(url_for('login'))
+
+@app.route('/set_time')
+def set_time():
+    data = request.get_json()
+    timeframe = data.get('time', '')
+    print(f"Received time value: {timeframe}")
+    result = spotify_functions.process_time(timeframe)
+
+    return jsonify({"message": f"Time set to {timeframe}"})
+
 
 @app.route("/test")
 def test():

@@ -30,15 +30,20 @@ sp = spotipy.Spotify(auth_manager=sp_oauth)
 
 range = 'long_term'
 
-# match timeframe:
-#     case 'short':
-#         range = 'short_term'
-#     case 'medium':
-#         range = 'medium_term'
-#     case 'long':
-#         range = 'long_term'
-#     case _:
-#         range = 'short_term'
+
+def process_time(timeframe):
+    match timeframe:
+        case 'short':
+            range = 'short_term'
+        case 'medium':
+            range = 'medium_term'
+        case 'long':
+            range = 'long_term'
+        case _:
+            range = 'short_term'
+
+
+
 
 
 
