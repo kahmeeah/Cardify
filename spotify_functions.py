@@ -41,7 +41,18 @@ def process_time(timeframe):
         case 'long':
             range = 'long_term'
         case _:
-            range = 'short_term'
+            range = 'long_term'
+
+def get_timeframe():
+    match range:
+        case 'short_term':
+            return "FOUR WEEKS"
+        case 'medium_term':
+            return "SIX MONTHS"
+        case 'long_term':
+            return "LIFETIME"
+        case _:
+            return "LIFETIME"
 
 
 def get_user_top_tracks(limit): # to-do: fix variable names
@@ -145,6 +156,7 @@ def gather_data():
     saved_tracks = get_saved_tracks()
     obscurity_lvl = get_obscurity_lvl()
     top_genres = get_top_genres()
+    timeframe_name = get_timeframe()
 
     return {
         'top_track': top_track,
@@ -154,5 +166,6 @@ def gather_data():
         'saved_playlists': saved_playlists,
         'saved_tracks': saved_tracks,
         'obscurity_lvl': obscurity_lvl,
-        'top_genres': top_genres
+        'top_genres': top_genres,
+        'timeframe_name': timeframe_name
     }
