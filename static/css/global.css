@@ -456,3 +456,36 @@ h3{
   height: 10px;
   transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
 }
+
+/* === Settings Modal === */
+.settings-container{
+  display: block;
+  background-color: #CEDCD9;
+  width: 120px;
+  height: auto;
+  border-radius: 6px;
+  padding: 15px;
+  border: 2px solid #1F374A;
+}
+
+
+.setdate {
+  width: auto;
+  /* height: 50px;
+  font-size: 18px; */
+  font-family: Arial, sans-serif;
+  /* letter-spacing: -1px; */
+  color: #1F374A;
+  padding: 4px;
+  margin: 4px;
+  border-radius: 5px;
+  border: 1px solid #1F374A;
+  cursor: pointer;
+  display: block;
+}
+
+  /* On hover, change background and border color */
+  .setdate:hover {
+    background-color: #537D8D;
+    color: whitesmoke;
+  }

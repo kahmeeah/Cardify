@@ -108,108 +108,62 @@ if (cog){
 
         } else{
 
-       options.style.visibility='visible'
+        options.style.visibility='visible'
 
-    // SHAPE OPTION BUTTON
-       const shape = document.querySelector('#shape');
-        if (shape){
-            shape.addEventListener('click', () =>{
-                console.log("shape clicked")
-                options.innerHTML = '';
+        const shortRangeBtn = document.querySelector('#short')
+        const mediumRangeBtn = document.querySelector('#medium')
+        const longRangeBtn = document.querySelector('#long')
 
-                // const heart = document.createElement
-
-                // Create the SVG element dynamically
-                const starSVG = createSVG('star', '../static/images/cardify-shapes.svg#star')
-                options.appendChild(starSVG);
-
-                const heartSVG = createSVG('heart', '../static/images/cardify-shapes.svg#heart')
-                options.appendChild(heartSVG);
-
-                const cloverSVG = createSVG('clover', '../static/images/cardify-shapes.svg#clover')
-                options.appendChild(cloverSVG);
-
-                const flowerSVG = createSVG('flower', '../static/images/cardify-shapes.svg#flower')
-                options.appendChild(flowerSVG);
-
-            })
-        }
-
-        const color = document.querySelector('#color');
-
-        const date = document.querySelector('#date');
-        if (date){
-            date.addEventListener('click', () => {
-                console.log("date clicked")
-                options.innerHTML = '';
-
-                const dateWeeks = createDateButton("Past 4 Weeks", "short")
-                options.appendChild(dateWeeks)
-
-                const dateYear = createDateButton("Past Year", "medium")
-                options.appendChild(dateYear)
-
-                const dateLifetime = createDateButton("Lifetime", "long")
-                options.appendChild(dateLifetime)
-            })
-        }
-        //lifetime
-        //past 4 wks
-        //past yr
-        //
-        // .bc-para{
-        //     font-family: Arial, Helvetica, sans-serif;
-        //     text-transform: capitalize;
-        //     font-size: 14px;
-        //     line-height: 1;
-        //     font-weight: 100;
-        //     letter-spacing: -1px;
-        //   }
-
-       
+        shortRangeBtn.addEventListener("click", () => {
+            sendDataToFlask("short")
+        })
+        mediumRangeBtn.addEventListener("click", () => {
+            sendDataToFlask("medium")
+        })
+        longRangeBtn.addEventListener("click", () => {
+            sendDataToFlask("long")
+        })
 
         }
     })
 }
 
-function createSVG(id, href) {
-    // Create the SVG element dynamically
-    const svgNamespace = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(svgNamespace, "svg");
-    svg.setAttribute("class", "option-item svg-buttons");
-    svg.setAttribute("id", id);
 
-    // Create the <use> element
-    const use = document.createElementNS(svgNamespace, "use");
-    use.setAttribute("href", href);
-
-    // Append the <use> element to the SVG
-    svg.appendChild(use);
-
-    return svg;
-}
-
-function createDateButton(datevar, timeframe){
-
-    const dateButton = document.createElement("button")
-    dateButton.textContent = datevar
-    dateButton.classList.add("dateBtn")
-
-    dateButton.addEventListener("click", () => {
-        sendDataToFlask(timeframe);
-    })
-    return dateButton
-}
-
+ 
 function sendDataToFlask(timeframe) {
     fetch('/set_time', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ time: timeframe })
     })
-    .then(response => response.json())
+    .then(() => fetch('/api/card_data'))
+    .then(res => res.json())
+    .then(data => {
+
+        const topGenres = document.querySelector('#top-genres');
+        if (topGenres) topGenres.innerText = data.top_genres;
+
+        const obscurity = document.querySelector('#obscurity');
+        if (obscurity) obscurity.innerText = `Your songs are ${data.obscurity_lvl}% obscure`;
+
+        const favArtists = document.querySelector('#fav-artists');
+        if (favArtists) {
+            const names = data.top_artists.map(a => a.name).join(', ');
+            favArtists.innerText = names; }
+
+        const trackImg = document.querySelector('#top-track-img');
+        if (trackImg) trackImg.src = data.top_track.album_image;
+
+        const trackName = document.querySelector('#top-track-name');
+        if (trackName) trackName.innerText = data.top_track.name;
+
+        const trackArtist = document.querySelector('#top-track-artist');
+        if (trackArtist) trackArtist.innerHTML = `by <i>${data.top_track.artists[0]}</i>`;
+
+        const timeframeName = document.querySelector('#timeframe-heading');
+        if (timeframeName) timeframeName.innerHTML = data.timeframe_name;
+
+    })
     .catch(error => console.error("Error:", error));
 }
 
