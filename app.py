@@ -69,15 +69,26 @@ def generate():
         return render_template('card.html', **template_data)
     return redirect(url_for('login'))
 
-@app.route('/set_time')
+@app.route('/set_time', methods=['POST'])
 def set_time():
     data = request.get_json()
     timeframe = data.get('time', '')
     print(f"Received time value: {timeframe}")
     result = spotify_functions.process_time(timeframe)
+    
+    spotify_functions.process_time(timeframe)
+    session.pop('cached_card_data', None)
 
     return jsonify({"message": f"Time set to {timeframe}"})
 
+@app.route('/api/card_data')
+def api_card_data():
+    range_key = spotify_functions.range
+    if f'cache_{range_key}' in session:
+        return jsonify(session[f'cache_{range_key}'])
+    data = spotify_functions.gather_data()
+    session[f'cache_{range_key}'] = data
+    return jsonify(data)
 
 @app.route("/test")
 def test():
