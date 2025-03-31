@@ -4,29 +4,21 @@ import spotipy.util as util
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 import os
-from app import sp_oauth
+
+scope="user-library-read user-top-read playlist-read-private playlist-read-collaborative"
+
+load_dotenv()
+
+sp_oauth = SpotifyOAuth(
+    os.environ.get("SPOTIPY_CLIENT_ID"),
+    os.environ.get("SPOTIPY_CLIENT_SECRET"),
+    os.environ.get("SPOTIPY_REDIRECT_URI"),
+    scope=["user-library-read user-top-read playlist-read-private playlist-read-collaborative"],
+    show_dialog=True
+    # cache_path=".spotipyoauthcache",
+)
 
 sp = spotipy.Spotify(auth_manager=sp_oauth)
-
-
-# load the environment variables from .env
-# load_dotenv()
-
-# # get the values of the environment variables
-# SPOTIPY_CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID')
-# SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET')
-# SPOTIPY_REDIRECT_URI = os.getenv('SPOTIPY_REDIRECT_URI')
-
-
-# # create the Spotify client with authentication
-# sp = Spotify(auth_manager=SpotifyOAuth(
-#     client_id=SPOTIPY_CLIENT_ID,
-#     client_secret=SPOTIPY_CLIENT_SECRET,
-#     redirect_uri=SPOTIPY_REDIRECT_URI,
-#     scope="user-library-read user-top-read playlist-read-private playlist-read-collaborative"  # Add any additional scopes here
-# ))
-
-# TO-DO: connect range with js user select
 
 range = 'long_term'
 
