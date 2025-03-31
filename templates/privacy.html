@@ -57,13 +57,7 @@
         <!-- this is the end of the main container -->
         
         <footer id="footer">
-            <span>&copy; 2023 Kahmeeah Obey. All rights reserved. 
-                <br><a href="{{ url_for('about') }}">About</a> |
-                <!-- <a href="about.html">About</a> |
-                <a href="mailto:yourname@example.com">Contact</a> | -->
-                <a href="https://github.com/kahmeeah">GitHub</a> |
-                <a href="{{ url_for('privacy') }}">Privacy Policy</a>
-            </span>
+            {% include 'footer.html' %}
         </footer>
     </div>
 </body>
