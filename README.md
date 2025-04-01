@@ -11,7 +11,7 @@ Cardify is a web application that utilizes the Spotify API to analyze users' lis
 
 ## Live Demo
 
-You can view a live demo of Cardiy [here](https://cardify-166o.onrender.com/).
+You can view a live demo of Cardiy [here](https://cardify.up.railway.app/).
 
 ## Tech Stack
 
