@@ -9,17 +9,6 @@ scope="user-library-read user-top-read playlist-read-private playlist-read-colla
 
 load_dotenv()
 
-sp_oauth = SpotifyOAuth(
-    os.environ.get("SPOTIPY_CLIENT_ID"),
-    os.environ.get("SPOTIPY_CLIENT_SECRET"),
-    os.environ.get("SPOTIPY_REDIRECT_URI"),
-    scope=["user-library-read user-top-read playlist-read-private playlist-read-collaborative"],
-    show_dialog=True
-    # cache_path=".spotipyoauthcache",
-)
-
-sp = spotipy.Spotify(auth_manager=sp_oauth)
-
 range = 'long_term'
 
 
@@ -47,7 +36,7 @@ def get_timeframe():
             return "LIFETIME"
 
 
-def get_user_top_tracks(limit): # to-do: fix variable names
+def get_user_top_tracks(limit, sp): # to-do: fix variable names
     top_tracks = sp.current_user_top_tracks(limit=limit, time_range=range) 
     print(range)
 
@@ -66,7 +55,7 @@ def get_user_top_tracks(limit): # to-do: fix variable names
     return track_list
 
 
-def get_user_info():
+def get_user_info(sp):
     user_info = sp.current_user()
 
     display_name = user_info['display_name']
@@ -74,7 +63,7 @@ def get_user_info():
     
     return display_name, profile_picture
 
-def get_top_artists(limit):
+def get_top_artists(limit, sp):
     artist_info = sp.current_user_top_artists(limit=limit, time_range=range)
 
     top_artists = [] # init list
@@ -87,17 +76,17 @@ def get_top_artists(limit):
 
     return top_artists
 
-def get_saved_playlists():
+def get_saved_playlists(sp):
     playlist_info = sp.current_user_playlists(limit=50)
     saved_playlists = playlist_info['total']
     return saved_playlists
 
-def get_saved_tracks():
+def get_saved_tracks(sp):
     track_info = sp.current_user_saved_tracks(limit=10, offset=10000)
     saved_tracks = track_info['total']
     return saved_tracks
     
-def get_audio_features(track_ids):
+def get_audio_features(track_ids, sp):
     audio_features = sp.audio_features(track_ids)  # track_ids must be a list
     features_list = []
     for current_feature in audio_features:
@@ -111,8 +100,8 @@ def get_audio_features(track_ids):
 
 
 
-def get_obscurity_lvl():
-    top_tracks = get_user_top_tracks(50)
+def get_obscurity_lvl(sp):
+    top_tracks = get_user_top_tracks(50, sp)
     popularity_lvl = [track['popularity'] for track in top_tracks]
     avg_popularity = sum(popularity_lvl) / len(popularity_lvl)
 
@@ -122,8 +111,8 @@ def get_obscurity_lvl():
 
 # endregion
 
-def get_top_genres():
-    top_artists = get_top_artists(limit=50)
+def get_top_genres(sp):
+    top_artists = get_top_artists(50, sp)
     
     genre_counts = {}
 
@@ -140,14 +129,14 @@ def get_top_genres():
 
 
 
-def gather_data():
-    top_track = get_user_top_tracks(1)[0]
-    display_name, profile_picture = get_user_info()
-    top_artists = get_top_artists(5)
-    saved_playlists = get_saved_playlists()
-    saved_tracks = get_saved_tracks()
-    obscurity_lvl = get_obscurity_lvl()
-    top_genres = get_top_genres()
+def gather_data(sp):
+    top_track = get_user_top_tracks(1, sp)[0]
+    display_name, profile_picture = get_user_info(sp)
+    top_artists = get_top_artists(5, sp)
+    saved_playlists = get_saved_playlists(sp)
+    saved_tracks = get_saved_tracks(sp)
+    obscurity_lvl = get_obscurity_lvl(sp)
+    top_genres = get_top_genres(sp)
     timeframe_name = get_timeframe()
 
     return {

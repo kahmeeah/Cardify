@@ -21,8 +21,8 @@ sp_oauth = SpotifyOAuth(
     os.environ.get("SPOTIPY_CLIENT_SECRET"),
     os.environ.get("SPOTIPY_REDIRECT_URI"),
     scope=["user-library-read user-top-read playlist-read-private playlist-read-collaborative"],
-    show_dialog=True
-    # cache_path=".spotipyoauthcache",
+    show_dialog=True,
+    cache_path=".spotipyoauthcache",
 )
 
 app = Flask(__name__)
@@ -43,14 +43,12 @@ def index():
 @app.route('/login')
 def login():
     auth_url = sp_oauth.get_authorize_url()
+    print("Redirecting to:", auth_url)
     return redirect(auth_url)
 
 @app.route('/callback')
 def callback():
-    token_info = sp_oauth.get_access_token(request.args['code'])
-
-
-    
+    token_info = sp_oauth.get_access_token(request.args['code'])    
     token = s.dumps({'token': token_info['access_token']})
     session['token'] = token
     return redirect(url_for('index'))
@@ -64,8 +62,9 @@ def logout():
 def generate(): 
     if 'token' in session:
         access_token = s.loads(session['token'])['token']
+        sp = Spotify(auth=access_token)
         from spotify_functions import gather_data
-        template_data = gather_data()
+        template_data = gather_data(sp)
         return render_template('card.html', **template_data)
     return redirect(url_for('login'))
 
@@ -83,18 +82,20 @@ def set_time():
 
 @app.route('/api/card_data')
 def api_card_data():
+    access_token = s.loads(session['token'])['token']
+    sp = Spotify(auth=access_token)
     range_key = spotify_functions.range
     if f'cache_{range_key}' in session:
         return jsonify(session[f'cache_{range_key}'])
-    data = spotify_functions.gather_data()
+    data = spotify_functions.gather_data(sp)
     session[f'cache_{range_key}'] = data
     return jsonify(data)
 
-@app.route("/test")
-def test():
-    from spotify_functions import gather_data
-    template_data = gather_data()
-    return render_template('testpy.html', **template_data)
+# @app.route("/test")
+# def test():
+#     from spotify_functions import gather_data
+#     template_data = gather_data()
+#     return render_template('testpy.html', **template_data)
     
 @app.route('/about')
 def about(): 
@@ -113,4 +114,4 @@ def privacy():
     return render_template('privacy.html') 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)  
+    app.run(host="0.0.0.0", port=8000, debug=True)  
