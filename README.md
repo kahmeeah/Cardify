@@ -9,9 +9,29 @@ Cardify is a web application that utilizes the Spotify API to analyze users' lis
 - Generates a custom visual ID card based on user data
 - Fully responsive design
 
-## Live Demo
+## Demo
 
-You can view a live demo of Cardiy [here](https://cardify.up.railway.app/).
+<!-- You can view a live demo of Cardiy [here](https://cardify.up.railway.app/). -->
+The live demo is temporarily disabled due to Spotify API restrictions. Until expanded access is approved, you can run the app locally using your own Spotify credentials or view the previews below.
+
+<details>
+<summary>Click to view demos</summary>
+
+### Generate ID Card
+
+![ID Card Demo](demo/generate-card-demo.gif)
+
+### Settings Options
+
+![Card Settings Demo](demo/card-settings-demo.gif)
+
+### Additional Pages
+
+![Other Pages](demo/other-pages-demo.gif)
+
+</details>
+
+###
 
 ## Tech Stack
 
